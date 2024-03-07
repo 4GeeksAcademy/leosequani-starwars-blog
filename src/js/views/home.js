@@ -44,27 +44,25 @@ export const Home = () => {
 					Meet the Characters
 				</div>
 			</div>
-			<div className="row">
-				<div className="cards-list" id="style2">
-					{stwchar.map((elm, index) => {
-						return (
-							<div className="col d-flex justify content-evenly" key={index}>
-								<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
-									<div className="card 1 ">
-										<div className="card_image"> <img src="https://hips.hearstapps.com/hmg-prod/images/star-wars-characters-ranked-1577122930.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=1200:*" /> </div>
-										<div className="card_title title-white">
-											<p>{elm.name}</p>
-										</div>
+
+			<div className="row cards-list dflex-justify-content-between" id="style2">
+				{stwchar.map((elm, index) => {
+					return (
+						<div className="col-2 my-1" key={index}>
+							<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
+								<div className="card 1 ">
+									<div className="card_image"> <img src="https://hips.hearstapps.com/hmg-prod/images/star-wars-characters-ranked-1577122930.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=1200:*" /> </div>
+									<div className="card_title title-white">
+										<span>{elm.name}</span>
 									</div>
-								</Link>
-							</div>
-						)
-					})}
-				</div>
-
+								</div>
+							</Link>
+						</div>
+					)
+				})}
 			</div>
-		</div>
 
+		</div>
 
 
 	);

@@ -16,9 +16,8 @@ body{
   }
   
   .card {
-    margin: 3px;
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 200px;
     border-radius: 40px;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
     cursor: pointer;
@@ -43,11 +42,11 @@ body{
     border-radius: 0px 0px 40px 40px;
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     margin-top: -80px;
-    height: 40px;
+    height: 20px;
     text-wrap: wrap;
-    text-shadow: 0 0 3px yellow, 0 0 5px yellow;
+    /* text-shadow: 0 0 3px yellow, 0 0 5px yellow; */
   }
   
   .card:hover {
@@ -75,4 +74,7 @@ body{
   color: white;
   border-bottom: white;
   font-size: 20px;
+}
+a{
+  text-decoration: none !important;
 }
