@@ -18,7 +18,7 @@ export const Home = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		fetch('https://swapi.dev/api/people')
+		fetch('https://swapi.tech/api/people')
 			.then(response => {
 				if (!response.ok) {
 					throw Error(response.statusText);
@@ -40,29 +40,27 @@ export const Home = () => {
 
 		<div className="container">
 			<div className="row">
-				<div className="h4 pb-2 mb-4 border-bottom border-secondary">
+				<div className="h1 pb-2 mb-4 border-bottom border-light text-light texttheme">
 					Meet the Characters
 				</div>
 			</div>
 			<div className="row">
-				{stwchar.map((elm, index) => {
-					return (
-						<div className="col-2" key={index}>
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1WHFzYAzGfvjR3wPUO0Y2MB7AbEqh5KGIAmBluRTopg&s" className="card-img-top" />
-							<div className="card-body">
-								<h5 className="card-title">{elm.name}</h5>
-								<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								<div className="row">
-									<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
-										<button className="btn btn-primary">Click to find more</button>
-									</Link>
-								</div>
+				<div className="cards-list" id="style2">
+					{stwchar.map((elm, index) => {
+						return (
+							<div className="col d-flex justify content-evenly" key={index}>
+								<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
+									<div className="card 1 ">
+										<div className="card_image"> <img src="https://hips.hearstapps.com/hmg-prod/images/star-wars-characters-ranked-1577122930.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=1200:*" /> </div>
+										<div className="card_title title-white">
+											<p>{elm.name}</p>
+										</div>
+									</div>
+								</Link>
 							</div>
-						</div>
-
-					)
-				})}
-
+						)
+					})}
+				</div>
 
 			</div>
 		</div>

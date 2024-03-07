@@ -17,7 +17,7 @@ export const Aboutcharacters = () => {
 
                 <div className="container">
                         <div className="row">
-                                <div className="col m-2">
+                                <div className="col m-2 texttheme">
                                         <h1>{data.name}</h1>
                                 </div>
                         </div>
@@ -26,7 +26,7 @@ export const Aboutcharacters = () => {
                                         <img src="https://static.tvtropes.org/pmwiki/pub/images/luke_the_hero_small.png" alt="" />
                                 </div>
                                 <div className="col">
-                                        <table className="table table-bordered border-primary">
+                                        <table className="table table-bordered texttheme">
                                                 <table class="table">
                                                         <thead>
                                                                 <tr>

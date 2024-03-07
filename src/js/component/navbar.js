@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+		<nav className="navbar mb-3 p-4">
 			<Link to="/">
-				<img src="https://pngimg.com/d/star_wars_logo_PNG18.png"  className="logo-thumbnail position-absolute top-50 start-50 translate-middle" />
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/2560px-Star_Wars_Logo.svg.png"  className="logo-thumbnail position-absolute top-50 start-50 translate-middle" />
 			</Link>
 			<div className="ml-auto">
 				<Link to="/demo">
