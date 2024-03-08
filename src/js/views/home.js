@@ -52,10 +52,19 @@ export const Home = () => {
 	}, [])
 
 
-	const createFav = (ind) => {
+	const createFav = (ind,char,click) => {
+		let newArray2=context.fav.find((element)=>element==char)
+		
+		if(!newArray2){
 		tempArr = [...context.fav]
 		tempArr.push(stwchar[ind]);
+		click.target.classList.add("testred")
 		context.setFav(tempArr)
+		}else{
+			let deletearr= context.fav.filter((element)=>element!=char);
+			context.setFav(deletearr);
+			click.target.classList.remove("testred")
+		}
 
 	}
 
@@ -70,18 +79,20 @@ export const Home = () => {
 				</div>
 			</div>
 
-			<div className="row cards-list dflex-justify-content-evenly" id="style2">
+			<div className="row cards-list dflex-justify-content-between" id="style2">
 				{stwchar.map((elm, index) => {
 					return (
-						<div className="col-2 m-2 border border-rounded-4" style={{backgroundImage:"https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796",borderRadius: "10px"}} key={index}>
-								{/* <img src={urlDataBase[index].url} className="img-fluid" alt="..."/> */}
-									<div className="card-body">
+						<div className="col-2 m-2 card p-0" style={{backgroundColor:"lightgrey"}} key={index}>
+								<img src="https://ew.com/thmb/qeJjQEgbFJCsTYR4KaaHUB6fgnc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/EW_StarWars_100-1-3e44e87aa604405eac533ba3b8cc85c2.jpg" className="img-fluid rounded" alt="..."/>
+									<div className="card-body p-3">
 										<h5 className="card-title text-light">{elm.name}</h5>
-										<div className="row d-flex justify-content-between">
+										<div className="row d-flex justify-content-evenly">
+										<div className="col">
 										<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
-										<button className="btn btn-primary">Find More</button>
+										<button className="btn btn-warning">More</button>
 										</Link>
-										<i class="far fa-heart" style={{color: "white"}}></i>
+										</div>
+										<i className="col fas fa-heart pt-2 pointer" style={{color: "white",fontSize:"1.5em"}} onClick={(e)=>{createFav(index,elm,e)}}></i>
 										</div>
 									</div>
 						</div>
