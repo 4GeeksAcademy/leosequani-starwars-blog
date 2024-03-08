@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AppContext } from "../layout";
 import { Link, useParams } from "react-router-dom";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
@@ -12,10 +13,25 @@ import "../../styles/home.css";
 
 export const Home = () => {
 	//StateHooks
-
-
+	const context = useContext(AppContext);
 	const [stwchar, setStwchar] = useState([]);
 	const params = useParams();
+
+	//Variables
+	let tempArr = []
+	let urlDataBase = [{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://arielhudnall.files.wordpress.com/2015/08/c3p0.png"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"},
+	{url: "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796"}]
+
+
 
 	useEffect(() => {
 		fetch('https://swapi.tech/api/people')
@@ -28,13 +44,22 @@ export const Home = () => {
 			})
 			.then(responseAsJson => {
 				// Do stuff with the JSONified response
-				setStwchar(responseAsJson.results)
+				setStwchar(responseAsJson.results);
 			})
 			.catch(error => {
 				console.log('Looks like there was a problem: \n', error);
 			});
 	}, [])
 
+
+	const createFav = (ind) => {
+		tempArr = [...context.fav]
+		tempArr.push(stwchar[ind]);
+		context.setFav(tempArr)
+
+	}
+
+	
 
 	return (
 
@@ -45,18 +70,20 @@ export const Home = () => {
 				</div>
 			</div>
 
-			<div className="row cards-list dflex-justify-content-between" id="style2">
+			<div className="row cards-list dflex-justify-content-evenly" id="style2">
 				{stwchar.map((elm, index) => {
 					return (
-						<div className="col-2 my-1" key={index}>
-							<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
-								<div className="card 1 ">
-									<div className="card_image"> <img src="https://hips.hearstapps.com/hmg-prod/images/star-wars-characters-ranked-1577122930.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=1200:*" /> </div>
-									<div className="card_title title-white">
-										<span>{elm.name}</span>
+						<div className="col-2 m-2 border border-rounded-4" style={{backgroundImage:"https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_7ffe21c7.jpeg?region=130%2C147%2C1417%2C796",borderRadius: "10px"}} key={index}>
+								{/* <img src={urlDataBase[index].url} className="img-fluid" alt="..."/> */}
+									<div className="card-body">
+										<h5 className="card-title text-light">{elm.name}</h5>
+										<div className="row d-flex justify-content-between">
+										<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
+										<button className="btn btn-primary">Find More</button>
+										</Link>
+										<i class="far fa-heart" style={{color: "white"}}></i>
+										</div>
 									</div>
-								</div>
-							</Link>
 						</div>
 					)
 				})}

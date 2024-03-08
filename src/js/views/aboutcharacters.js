@@ -9,9 +9,6 @@ export const Aboutcharacters = () => {
 
 
 
-
-
-
         return (
 
 
