@@ -3,17 +3,17 @@ import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../layout";
 
 export const Navbar = () => {
-	let deletearr= []
+	let deletearr = []
 
 	const context = useContext(AppContext);
 
-	const deleteFunction =(elmin)=>{
+	const deleteFunction = (elmin) => {
 		deletearr = context.fav.filter(elm => elm != elmin);
 		context.setFav(deletearr)
 	}
 
-	
-	
+
+
 
 	return (
 		<nav className="navbar mb-2">
@@ -30,9 +30,21 @@ export const Navbar = () => {
 					</a>
 					<ul className="dropdown-menu">
 						{
-							context.fav.map((elm,ind) => {
+							context.fav.map((elm, ind) => {
 								return (
-									<li key={ind}><a className="dropdown-item" href="#"><span className="pe-4">{elm.name}</span><i className="fas fa-trash" onClick={()=>{deleteFunction(elm)}}></i></a></li>
+									<li key={ind}>
+										<div className="row">
+											<div className="col-9">
+												<Link to={`/aboutcharacters/${elm.name}`} state={elm}>
+													<button className="dropdown-item">
+														<span className="pe-4">{elm.name}</span></button>
+												</Link>
+											</div>
+											<div className="col-3">
+												<i className="fas fa-trash pointer" onClick={() => { deleteFunction(elm) }}></i>
+											</div>
+										</div>
+									</li>
 								)
 							})
 						}

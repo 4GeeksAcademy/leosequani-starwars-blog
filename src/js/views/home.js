@@ -58,12 +58,10 @@ export const Home = () => {
 		if(!newArray2){
 		tempArr = [...context.fav]
 		tempArr.push(stwchar[ind]);
-		click.target.classList.add("testred")
 		context.setFav(tempArr)
 		}else{
 			let deletearr= context.fav.filter((element)=>element!=char);
 			context.setFav(deletearr);
-			click.target.classList.remove("testred")
 		}
 
 	}
@@ -92,7 +90,7 @@ export const Home = () => {
 										<button className="btn btn-warning">More</button>
 										</Link>
 										</div>
-										<i className="col fas fa-heart pt-2 pointer" style={{color: "white",fontSize:"1.5em"}} onClick={(e)=>{createFav(index,elm,e)}}></i>
+										<i className="col fas fa-heart pt-2 pointer" style={context.fav.includes(elm)?{color: "red",fontSize:"1.5em"}:{color: "white",fontSize:"1.5em"}} onClick={(e)=>{createFav(index,elm,e)}}></i>
 										</div>
 									</div>
 						</div>
