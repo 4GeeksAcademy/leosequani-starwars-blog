@@ -6,6 +6,7 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
+import { Login } from "./views/login";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -18,7 +19,6 @@ export const AppContext = React.createContext();
 const Layout = () => {
 
 	const [fav, setFav] = useState([]);
-
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
@@ -30,7 +30,8 @@ const Layout = () => {
 					<ScrollToTop>
 						<Navbar />
 						<Routes>
-							<Route path="/" element={<Home />} />
+							<Route path="/" element={<Login />} />
+							<Route path="/Home" element={<Home />} />
 							<Route path="/aboutcharacters/:ind" element={<Aboutcharacters />} />
 							<Route path="/demo" element={<Demo />} />
 							<Route path="/single/:theid" element={<Single />} />

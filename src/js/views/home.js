@@ -34,7 +34,7 @@ export const Home = () => {
 
 
 	useEffect(() => {
-		fetch('https://swapi.tech/api/people')
+		fetch('https://swapi.dev/api/people')
 			.then(response => {
 				if (!response.ok) {
 					throw Error(response.statusText);
