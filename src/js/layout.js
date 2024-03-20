@@ -11,6 +11,7 @@ import { Login } from "./views/login";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Aboutcharacters } from "./views/aboutcharacters";
+import { Aboutplanets } from "./views/aboutplanets";
 export const AppContext = React.createContext();
 
 
@@ -19,13 +20,16 @@ export const AppContext = React.createContext();
 const Layout = () => {
 
 	const [fav, setFav] = useState([]);
+	const [user, setUser] = useState("");
+
+
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
 	const basename = process.env.BASENAME || "";
 
 	return (
 		<div>
-			<AppContext.Provider value={{ fav, setFav }}>
+			<AppContext.Provider value={{ fav, setFav,user,setUser }}>
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />
@@ -33,6 +37,7 @@ const Layout = () => {
 							<Route path="/" element={<Login />} />
 							<Route path="/Home" element={<Home />} />
 							<Route path="/aboutcharacters/:ind" element={<Aboutcharacters />} />
+							<Route path="/aboutplanets/:ind" element={<Aboutplanets />}/>
 							<Route path="/demo" element={<Demo />} />
 							<Route path="/single/:theid" element={<Single />} />
 							<Route path="*" element={<h1>Not found!</h1>} />

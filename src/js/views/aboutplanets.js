@@ -2,7 +2,7 @@ import React, { } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 
-export const Aboutcharacters = () => {
+export const Aboutplanets = () => {
 
         const location = useLocation()
         const data = location.state;
@@ -10,8 +10,6 @@ export const Aboutcharacters = () => {
 
 
         return (
-
-
                 <div className="container">
                         <div className="row">
                                 <div className="col m-2 texttheme">
@@ -20,7 +18,7 @@ export const Aboutcharacters = () => {
                         </div>
                         <div className="row">
                                 <div className="col">
-                                        <img src="https://static.tvtropes.org/pmwiki/pub/images/luke_the_hero_small.png" alt="" />
+                                        <img src="https://cdn.pixabay.com/photo/2023/01/17/05/33/star-wars-7723785_1280.jpg" alt="" />
                                 </div>
                                 <div className="col">
                                         <table className="table table-bordered texttheme">
@@ -33,32 +31,36 @@ export const Aboutcharacters = () => {
                                                         </thead>
                                                         <tbody>
                                                                 <tr>
-                                                                        <th scope="row">Height</th>
-                                                                        <td>{data.height}</td>
+                                                                        <th scope="row">Rotation Period</th>
+                                                                        <td>{data.rotation_period}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                        <th scope="row">Mass</th>
-                                                                        <td>{data.mass}</td>
+                                                                        <th scope="row">Orbital Period</th>
+                                                                        <td>{data.orbital_period}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                        <th scope="row">Hair Color</th>
-                                                                        <td>{data.hair_color}</td>
+                                                                        <th scope="row">Diameter</th>
+                                                                        <td>{data.diameter}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                        <th scope="row">Skin Color</th>
-                                                                        <td>{data.skin_color}</td>
+                                                                        <th scope="row">Climate</th>
+                                                                        <td>{data.climate}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                        <th scope="row">Eye Color</th>
-                                                                        <td>{data.eye_color}</td>
+                                                                        <th scope="row">Gravity</th>
+                                                                        <td>{data.gravity}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                        <th scope="row">Birth Year</th>
-                                                                        <td>{data.birth_year}</td>
+                                                                        <th scope="row">Terrain</th>
+                                                                        <td>{data.terrain}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                        <th scope="row">Gender</th>
-                                                                        <td>{data.gender}</td>
+                                                                        <th scope="row">Surface Water</th>
+                                                                        <td>{data.surface_water}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                        <th scope="row">Population</th>
+                                                                        <td>{data.population}</td>
                                                                 </tr>
                                                         </tbody>
                                                 </table>
@@ -68,6 +70,5 @@ export const Aboutcharacters = () => {
                 </div>
 
         )
+
 }
-
-
