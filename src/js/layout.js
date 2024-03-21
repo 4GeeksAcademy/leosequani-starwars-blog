@@ -23,6 +23,7 @@ const Layout = () => {
 	const [user, setUser] = useState("");
 	const [stwPlan, setPlan] = useState([]);
 	const [stwchar, setStwchar] = useState([]);
+	const [toggle, setToggle] = useState(false)
 
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
 	// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
@@ -30,7 +31,7 @@ const Layout = () => {
 
 	return (
 		<div>
-			<AppContext.Provider value={{ fav, setFav,user,setUser,stwchar,setStwchar,stwPlan,setPlan }}>
+			<AppContext.Provider value={{ fav, setFav,user,setUser,stwchar,setStwchar,stwPlan,setPlan,toggle,setToggle }}>
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
 						<Navbar />

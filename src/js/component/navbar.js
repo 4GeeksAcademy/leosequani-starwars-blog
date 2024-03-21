@@ -7,20 +7,15 @@ export const Navbar = () => {
 	const context = useContext(AppContext);
 
 
-	const deleteFunction = (elmin) => {
-		deletearr = context.fav.filter(elm => elm != elmin);
-		context.setFav(deletearr)
+	const deleteFunction = (deleteid) => {
+		let deletearr = context.fav.filter((elm) => elm.id != deleteid);
+		console.log(deletearr);
+		fetch(`https://organic-adventure-977rjvgv9p6437jxp-3000.app.github.dev/deletefavorite/${deleteid}`, { method: 'DELETE' })
+				.then(() => context.setFav(deletearr))
+				.then(() => context.setToggle(!context.toggle))
+				.then(() => console.log('Delete successful'));
+
 	}
-	
-	
-	// const funct = () => {
-	// 	let charids = context.fav.map(
-	// 	elm => fav.char_id
-	// );
-	// 	let fav_characters = context.stwchar.filter(
-	// 		char => charids.includes(char.id)
-	// 	) 	
-	// 	}
 	
 	return (
 		<nav className="navbar mb-2">
@@ -45,12 +40,12 @@ export const Navbar = () => {
 											<div className="col-9">
 												<button className="dropdown-item">
 													<span className="pe-4">
-														{fave.char_name}
+														{fave.char_name?fave.char_name:fave.planet_name}
 													</span>
 												</button>
 											</div>
 											<div className="col-3">
-												<i className="fas fa-trash pointer" onClick={() => { deleteFunction(elm.char_id) }}></i>
+												<i className="fas fa-trash pointer" onClick={() => { deleteFunction(fave.id) }}></i>
 											</div>
 										</div>
 									</li>
