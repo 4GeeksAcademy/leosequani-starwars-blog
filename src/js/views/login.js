@@ -1,13 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../layout";
 
 export const Login = () => {
 
-    const { user, setUser } = useContext(AppContext)
-   
+    const { user, setUser, setStwchar, setPlan, setFav, fav } = useContext(AppContext)
+    useEffect(() => {
+        fetch('https://swapi.dev/api/people')
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                // Read the response as JSON
+                return response.json();
+            })
+            .then(responseAsJson => {
+                // Do stuff with the JSONified response
+                setStwchar(responseAsJson.results);
+            })
+            .catch(error => {
+                console.log('Looks like there was a problem: \n', error);
+            });
+        fetch('https://swapi.dev/api/planets')
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                // Read the response as JSON
+                return response.json();
+            })
+            .then(responseAsJson => {
+                // Do stuff with the JSONified response
+                setPlan(responseAsJson.results);
+            })
+            .catch(error => {
+                console.log('Looks like there was a problem: \n', error);
+            });
+
+
+
+    }, [])
+
+
+
+
     const setCurrentUser = () => {
-        fetch(`https://refactored-pancake-g44j79v94xq4cvg6g-3000.app.github.dev/user/${user}`)
+        fetch(`https://organic-adventure-977rjvgv9p6437jxp-3000.app.github.dev/user/${user}`)
             .then(response => {
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -21,6 +59,23 @@ export const Login = () => {
                 console.log('Looks like there was a problem: \n', error);
             });
     }
+    // const getFavorites = () => {
+
+    //     fetch(`https://refactored-pancake-g44j79v94xq4cvg6g-3000.app.github.dev/favorites/${user[0].id}`)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw Error(response.statusText);
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(responseAsJson => {
+    //             setFav(responseAsJson);
+    //         })
+    //         .catch(error => {
+    //             console.log('Looks like there was a problem: \n', error);
+    //         });
+
+    // }
 
 
 
@@ -42,7 +97,7 @@ export const Login = () => {
             <div className="row">
                 <div className="col d-inline-flex justify-content-center">
                     <Link to={"/Home"}>
-                        <button type="submit" className="btn btn-primary" onClick={() => { setCurrentUser() }}>Submit</button>
+                        <button type="submit" className="btn btn-primary" onClick={() => { setCurrentUser()}}>Submit</button>
                     </Link>
                 </div>
             </div>

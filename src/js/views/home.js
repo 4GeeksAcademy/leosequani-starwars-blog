@@ -13,67 +13,41 @@ import "../../styles/home.css";
 
 export const Home = () => {
 	//StateHooks
-	const context = useContext(AppContext);
-	const [stwchar, setStwchar] = useState([]);
-	const [stwPlan, setPlan] = useState([]);
+	const { stwchar, setStwchar, setFav, fav, stwPlan, setPlan, user } = useContext(AppContext);
 	const params = useParams();
-
+	const [toggle,setToggle]=useState(false)
 	//Variables
 	let tempArr = []
+
 	useEffect(() => {
-		fetch('https://swapi.dev/api/people')
+		fetch(`https://organic-adventure-977rjvgv9p6437jxp-3000.app.github.dev/favorites/${user[0].id}`)
 			.then(response => {
 				if (!response.ok) {
 					throw Error(response.statusText);
 				}
-				// Read the response as JSON
 				return response.json();
 			})
 			.then(responseAsJson => {
-				// Do stuff with the JSONified response
-				setStwchar(responseAsJson.results);
+				setFav(responseAsJson)
 			})
 			.catch(error => {
 				console.log('Looks like there was a problem: \n', error);
 			});
-		fetch('https://swapi.dev/api/planets')
-			.then(response => {
-				if (!response.ok) {
-					throw Error(response.statusText);
-				}
-				// Read the response as JSON
-				return response.json();
-			})
-			.then(responseAsJson => {
-				// Do stuff with the JSONified response
-				setPlan(responseAsJson.results);
-			})
-			.catch(error => {
-				console.log('Looks like there was a problem: \n', error);
-			});
-
-
-
-	}, [])
+	}, [user]);
 
 
 	const createFav = (ind, char, click) => {
-		let newArray2 = context.fav.find((element) => element == ind)
-
+		let newArray2 = fav.find((element) => element == char)
 		if (!newArray2) {
-			tempArr = [...context.fav]
-			tempArr.push(ind);
-			context.setFav(tempArr)
-		} else {
-			let deletearr = context.fav.filter((element) => element != ind);
-			context.setFav(deletearr);
-		}
-		fetch(`https://refactored-pancake-g44j79v94xq4cvg6g-3000.app.github.dev/addfavorites`, {
+			tempArr = [...fav]
+			tempArr.push(char);
+			setFav(tempArr)
+			fetch(`https://organic-adventure-977rjvgv9p6437jxp-3000.app.github.dev/addfavorites`, {
 			method: 'POST',
 			body: JSON.stringify({
-				"user_id":context.user.id,
-				"homeworld_id":null,
-				"char_id":ind
+				"user_id": user[0].id,
+				"homeworld_id": null,
+				"char_Name": char.name
 
 			}), // data can be a 'string' or an {object} which comes from somewhere further above in our application
 			headers: {
@@ -84,9 +58,33 @@ export const Home = () => {
 				if (!res.ok) throw Error(res.statusText);
 				return res.json();
 			})
-			.then(response => console.log('Success:', response))
+			.then(response =>{ 
+				console.log('Success:', response)
+				
+			})
 			.catch(error => console.error(error));
+			fetch(`https://organic-adventure-977rjvgv9p6437jxp-3000.app.github.dev/favorites/${user[0].id}`)
+			.then(response => {
+				if (!response.ok) {
+					throw Error(response.statusText);
+				}
+				return response.json();
+			})
+			.then(responseAsJson => {
+				setFav(responseAsJson)
+				
+			})
+			.catch(error => {
+				console.log('Looks like there was a problem: \n', error);
+			});
 
+			
+		} else {
+			let deletearr = fav.filter((element) => element != char);
+			setFav(deletearr);
+		}
+		
+		setToggle(!toggle)
 	}
 
 
@@ -113,7 +111,7 @@ export const Home = () => {
 											<button className="btn btn-warning">More</button>
 										</Link>
 									</div>
-									<i className="col fas fa-heart pt-2 pointer" style={context.fav.includes(elm) ? { color: "red", fontSize: "1.5em" } : { color: "white", fontSize: "1.5em" }} onClick={(e) => { createFav(index, elm, e) }}></i>
+									<i className="col fas fa-heart pt-2 pointer" style={fav.some( fav => fav['char_name'] == elm.name )? { color: "red", fontSize: "1.5em" } : { color: "white", fontSize: "1.5em" }} onClick={(e) => { createFav(index, elm, e) }}></i>
 								</div>
 							</div>
 						</div>
@@ -139,7 +137,7 @@ export const Home = () => {
 											<button className="btn btn-warning">More</button>
 										</Link>
 									</div>
-									<i className="col fas fa-heart pt-2 pointer" style={context.fav.includes(elm) ? { color: "red", fontSize: "1.5em" } : { color: "white", fontSize: "1.5em" }} onClick={(e) => { createFav(index, elm, e) }}></i>
+									<i className="col fas fa-heart pt-2 pointer" style={fav.includes(elm) ? { color: "red", fontSize: "1.5em" } : { color: "white", fontSize: "1.5em" }} onClick={(e) => { createFav(index, elm, e) }}></i>
 								</div>
 							</div>
 						</div>

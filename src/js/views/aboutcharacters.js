@@ -10,8 +10,6 @@ export const Aboutcharacters = () => {
 
 
         return (
-
-
                 <div className="container">
                         <div className="row">
                                 <div className="col m-2 texttheme">
@@ -24,7 +22,7 @@ export const Aboutcharacters = () => {
                                 </div>
                                 <div className="col">
                                         <table className="table table-bordered texttheme">
-                                                <table class="table">
+                                        
                                                         <thead>
                                                                 <tr>
                                                                         <th scope="col">{data.name}</th>
@@ -61,7 +59,6 @@ export const Aboutcharacters = () => {
                                                                         <td>{data.gender}</td>
                                                                 </tr>
                                                         </tbody>
-                                                </table>
                                         </table>
                                 </div>
                         </div>
